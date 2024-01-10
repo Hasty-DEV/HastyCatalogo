@@ -1,0 +1,19 @@
+{
+  "name": "hastycatalogo",
+  "version": "0.0.0",
+  "description": "API de um catálogo dinâmico para simplificar visualização de catálogos. Explore produtos e serviços com facilidade. Interface intuitiva e recursos robustos para uma experiência elevada.",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jefferson Laurindo da Silva",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21"
+  }
+}
