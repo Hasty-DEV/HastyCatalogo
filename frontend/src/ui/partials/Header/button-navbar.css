@@ -1,0 +1,12 @@
+.custom-navbar-toggler {
+  background-image: url("../../assets/button-navbar.svg");
+  background-size: 56px 40px;
+  width: 56px;
+  height: 40px;
+}
+.navbar-toggler-icon {
+  background-image: none;
+  background-color: transparent;
+  width: 56px;
+  height: 40px;
+}
