@@ -3,11 +3,11 @@ import Header from "../partials/Header/Header";
 
 const MainLayout: React.FC = () => {
   return (
-    <>
+    <div>
       <Header />
       <Outlet />
       {/* // <Footer /> */}
-    </>
+    </div>
   );
 };
 
