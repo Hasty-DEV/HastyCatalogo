@@ -5,11 +5,11 @@ import logger from '../config/logger';
 
 export const register = async (req: Request, res: Response) => {
   const { fullName, cpf, password, companyPassword, role } = req.body;
+ 
 
-  const empresaSenha = 'senha_da_sua_empresa';
 
   try {
-    if (companyPassword !== empresaSenha) {
+    if (companyPassword !== process.env.COMPANYPASS) {
       logger.error('Senha da empresa incorreta');
       return res.status(401).json({ error: 'Senha da empresa incorreta' });
     }

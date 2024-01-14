@@ -18,7 +18,7 @@ export const login = async (req: Request, res: Response) => {
     // Verifica se o usuário existe e ambas as senhas estão corretas
     if (user && 
         (await bcrypt.compare(password, user.password)) &&
-        (companyPassword === 'senha_da_sua_empresa')
+        (companyPassword === process.env.COMPANYPASS)
     ) {
       res.json({ message: 'Login bem-sucedido' });
     } else {
