@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  logger.error(err.stack); // Registra o stack trace do erro
+  logger.error(err.stack);
   res.status(500).send('Erro interno do servidor');
 };
 

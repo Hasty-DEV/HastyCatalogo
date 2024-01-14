@@ -11,7 +11,7 @@ const sequelize = new Sequelize({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   dialectOptions: {
-    charset: 'utf8mb4', // Use utf8mb4 para suportar emojis e caracteres especiais
+    charset: 'utf8mb4',
   },
   define: {
     charset: 'utf8mb4',

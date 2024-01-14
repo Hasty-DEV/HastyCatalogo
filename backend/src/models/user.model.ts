@@ -1,12 +1,10 @@
-// models/user.model.ts
-
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/db';
 
 class User extends Model {
   public id!: number;
   public fullName!: string;
-  public cpf!: number; // Alteração para aceitar apenas números
+  public cpf!: number;
   public password!: string;
   public companyPassword!: string;
   public role!: string;
