@@ -11,10 +11,10 @@ describe('Register Controller - Unit Tests', () => {
 
     req.body = {
       fullName: 'John weergrefweDoe',
-      cpf: '1234567fdgwer8dcvd901',
+      cpf: '12345679012',
       username: 'johwefwerevrevn_doe',
-      password: 'paswefwefsergvword123',
-      companyPassword: 'senha_da_su_empresa',
+      password: 'password123',
+      companyPassword: 'senha_da_sua_empresa',
       role: 'admin',
     };
 

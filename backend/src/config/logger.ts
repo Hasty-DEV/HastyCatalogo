@@ -1,14 +1,45 @@
 import { createLogger, format, transports } from 'winston';
+import DailyRotateFile from 'winston-daily-rotate-file';
 
-// Configuração básica do logger
+const { combine, timestamp, printf, colorize } = format;
+
+const logFormat = printf(({ level, message, timestamp }) => {
+  return `[${timestamp}] [${level.toUpperCase()}]: ${message}`;
+});
+
+// ...
+
 const logger = createLogger({
   level: 'info',
-  format: format.json(),
+  format: combine(
+    timestamp(),
+    logFormat
+  ),
   transports: [
-    new transports.Console(), // Log para o console
-    new transports.File({ filename: 'error.log', level: 'error' }), // Log de erros em um arquivo
-    new transports.File({ filename: 'combined.log' }) // Log geral em um arquivo
+    new transports.Console({
+      format: combine(colorize(), logFormat),
+    }),
+    new DailyRotateFile({
+      filename: 'logs/error-%DATE%.log',
+      datePattern: 'YYYY-MM-DD',
+      level: 'error',
+      zippedArchive: true,
+      maxSize: '20m',
+      maxFiles: '14d',
+    }),
+    new DailyRotateFile({
+      filename: 'logs/combined-%DATE%.log',
+      datePattern: 'YYYY-MM-DD',
+      zippedArchive: true,
+      maxSize: '20m',
+      maxFiles: '14d',
+    }),
   ],
+});
+
+// Adicione a verificação de erros
+logger.on('error', (err) => {
+  console.error('Erro no logger:', err);
 });
 
 export default logger;
