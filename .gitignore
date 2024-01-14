@@ -2,3 +2,6 @@ node_modules/
 dist/
 .env
 node_
+error.log
+combined.log
+logs/
