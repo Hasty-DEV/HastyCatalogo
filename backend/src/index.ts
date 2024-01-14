@@ -1,14 +1,27 @@
-import express, { Request, Response, NextFunction } from "express";
+import express, { Request, Response, NextFunction , ErrorRequestHandler } from "express";
 import cors from "cors";
 import router from "./routes/main";
+import dotenv from "dotenv";
+import './config/db';
+import logger from './config/logger';
 
-const PORT = process.env.PORT || 4000;
+dotenv.config();
+
+const PORT = process.env.PORT;
 
 const app = express();
 
 app.use(cors());
 
 app.use(express.json());
+
+const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+  logger.error(err.stack); // Registra o stack trace do erro
+  res.status(500).send('Erro interno do servidor');
+};
+
+app.use(errorHandler);
+
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Seja Bem vindo a API do Hasty Catalogo!");
@@ -26,5 +39,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando com sucesso`);
+  console.log(`Servidor rodando com sucesso na porta ` + PORT);
 });
