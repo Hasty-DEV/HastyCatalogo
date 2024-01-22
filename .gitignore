@@ -2,4 +2,4 @@ node_modules/
 dist/
 .env
 node_
-/logs
+logs/
