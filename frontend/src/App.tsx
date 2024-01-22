@@ -8,7 +8,7 @@ const App: React.FC = () => {
       <BrowserRouter>
         <Routes>
           <Route  path="/" element={<MainLayout />}>
-            <Route index element={<>oiiii lucas lindo</>} />
+            
           </Route>
         </Routes>
       </BrowserRouter>
