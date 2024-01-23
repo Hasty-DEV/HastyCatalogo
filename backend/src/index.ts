@@ -4,6 +4,7 @@ import router from "./routes/main";
 import dotenv from "dotenv";
 import './config/db';
 import logger from './config/logger';
+import uploadMiddleware from "./middlewares/upload.middleware";
 
 dotenv.config();
 
@@ -14,6 +15,8 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
+
+app.use(uploadMiddleware);
 
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   logger.error(err.stack);

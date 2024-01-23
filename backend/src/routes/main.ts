@@ -7,6 +7,7 @@ import enviarpedido from '../controllers/enviar.pedido.controller';
 import criarProduto from '../controllers/criar.produto.controller';
 import atualizarProduto from '../controllers/atualizar.produto.controller';
 import deletarProduto from '../controllers/deletar.produto.controller'; // Importe o controlador de exclusão
+import CriarProdutoExcelController from '../controllers/criar.produto.excel.controller';
 
 const router = express.Router();
 
@@ -20,6 +21,7 @@ router.post('/pedido', async (req, res) => {
 
 router.post('/admin/criar-produto', criarProduto);
 router.put('/admin/atualizar-produto/:id', atualizarProduto);
-router.delete('/admin/deletar-produto/:id', deletarProduto); // Adicione a rota de exclusão
+router.delete('/admin/deletar-produto/:id', deletarProduto);  
+router.post('/admin/upload-excel', CriarProdutoExcelController.criarProdutoExcel);
 
 export default router;
