@@ -10,7 +10,7 @@ export const register = async (req: Request, res: Response) => {
 
   try {
     if (companyPassword !== process.env.COMPANYPASS) {
-      logger.error('Senha da empresa incorreta');
+      logger.error('Senha da empresa incorreta para o usuário:', { cpf });
       return res.status(401).json({ error: 'Senha da empresa incorreta' });
     }
 
@@ -23,10 +23,10 @@ export const register = async (req: Request, res: Response) => {
       companyPassword,
       role,
     });
-
+    logger.info('Usuário registrado com sucesso:', { cpf });
     res.json(user);
   } catch (error) {
-    logger.error('Erro ao registrar usuário', error);
+    logger.error('Erro ao registrar usuário', { error });
     res.status(500).json({ error: 'Erro ao registrar usuário' });
   }
 };

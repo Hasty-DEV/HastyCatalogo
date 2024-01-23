@@ -17,16 +17,17 @@ export const login = async (req: Request, res: Response) => {
 
     // Verifica se o usuário existe e ambas as senhas estão corretas
     if (user && 
-        (await bcrypt.compare(password, user.password)) &&
-        (companyPassword === process.env.COMPANYPASS)
-    ) {
-      res.json({ message: 'Login bem-sucedido' });
-    } else {
-      logger.error('Credenciais inválidas');
-      res.status(401).json({ error: 'Credenciais inválidas' });
-    }
-  } catch (error) {
-    logger.error('Erro ao realizar login', error);
-    res.status(500).json({ error: 'Erro ao realizar login' });
+      (await bcrypt.compare(password, user.password)) &&
+      (companyPassword === process.env.COMPANYPASS)
+  ) {
+    logger.info('Login bem-sucedido para o usuário:', { cpf });
+    res.json({ message: 'Login bem-sucedido' });
+  } else {
+    logger.error('Credenciais inválidas para o usuário:', { cpf });
+    res.status(401).json({ error: 'Credenciais inválidas' });
   }
+} catch (error) {
+  logger.error('Erro ao realizar login', { error });
+  res.status(500).json({ error: 'Erro ao realizar login' });
+}
 };

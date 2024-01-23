@@ -1,17 +1,18 @@
 // criarProdutoController.ts
 import { Request, Response } from 'express';
-import axios from 'axios';
-import Produto from '../models/produtos.model'; // Certifique-se de ajustar o caminho conforme sua estrutura de projeto
+import Produto from '../models/produtos.model';
+import logger from '../config/logger'; // Substitua pelo caminho correto
 
 async function criarProduto(req: Request, res: Response): Promise<void> {
   const novoProduto = req.body;
 
   if (!novoProduto || !novoProduto.title || !novoProduto.price || !novoProduto.category || !novoProduto.image) {
-     res.status(400).json({ mensagem: 'Todos os campos são obrigatórios.' });
+    logger.error('Todos os campos são obrigatórios.');
+    res.status(400).json({ mensagem: 'Todos os campos são obrigatórios.' });
+    return;
   }
 
   try {
- 
     const produtoLocal = await Produto.create({
       title: novoProduto.title,
       price: novoProduto.price,
@@ -19,13 +20,10 @@ async function criarProduto(req: Request, res: Response): Promise<void> {
       image: novoProduto.image,
     });
 
- 
-    const response = await axios.post('https://fakestoreapi.com/products', novoProduto);
-    const produtoCriado = response.data;
- 
-    res.status(201).json({ produtoLocal, produtoCriado });
+    logger.info('Produto criado com sucesso:', { id: produtoLocal.id });
+    res.status(201).json({ produtoLocal });
   } catch (error) {
-    console.error('Erro ao criar o produto:', error);
+    logger.error('Erro ao criar o produto:', error);
     res.status(500).json({ mensagem: 'Erro interno ao criar o produto.' });
   }
 }

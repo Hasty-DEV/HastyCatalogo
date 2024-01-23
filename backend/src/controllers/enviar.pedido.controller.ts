@@ -2,7 +2,7 @@
 import { Request, Response } from 'express';
 import DadosDoBanco from '../services/dados.pedido.services';
 import dotenv from 'dotenv';
-
+import logger from '../config/logger';
 class EnviarPedido {
   static async obterPedidos(req: Request, res: Response): Promise<void> {
     try {
@@ -38,12 +38,15 @@ class EnviarPedido {
       if (mensagensPedidos.length > 0) {
         const primeiroLink = mensagensPedidos[0];
 
-        console.log(primeiroLink);
+        logger.info('Primeiro link de pedido obtido com sucesso:', { link: primeiroLink });
 
+        // Restante do código...
       } else {
+        logger.error('Nenhum pedido encontrado.');
         res.status(404).json({ mensagem: 'Nenhum pedido encontrado' });
       }
     } catch (error) {
+      logger.error('Erro ao obter pedidos do banco de dados:', error);
       console.error('Erro ao obter pedidos do banco de dados:', error);
       res.status(500).json({ mensagem: 'Erro interno do servidor' });
     }

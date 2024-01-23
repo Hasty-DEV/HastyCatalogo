@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Pedido } from '../models/pedidos.model';
-
+import logger from '../config/logger';
 class CriarPedido {
   static async criarPedido(req: Request, res: Response): Promise<void> {
     try {
@@ -43,9 +43,10 @@ class CriarPedido {
       });
 
       // Responder com o novo pedido criado
+      logger.info('Pedido criado com sucesso:', { nomeCompleto });
       res.status(201).json({ mensagem: 'Pedido criado com sucesso', pedido: novoPedido });
     } catch (error) {
-      console.error('Erro ao criar pedido:', error);
+      logger.error('Erro ao criar pedido:', { error });
       res.status(500).json({ mensagem: 'Erro interno do servidor' });
     }
   }

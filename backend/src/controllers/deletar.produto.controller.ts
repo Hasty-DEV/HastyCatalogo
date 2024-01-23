@@ -1,6 +1,5 @@
 // deletar.produto.controller.ts
 import { Request, Response } from 'express';
-import axios from 'axios';
 import Produto from '../models/produtos.model';
 
 async function deletarProduto(req: Request, res: Response): Promise<void> {
@@ -16,9 +15,6 @@ async function deletarProduto(req: Request, res: Response): Promise<void> {
 
     // Deleta o produto no banco de dados local
     await produtoLocal.destroy();
-
-    // Deleta o produto na FakeStore API
-    await axios.delete(`https://fakestoreapi.com/products/${id}`);
 
     res.status(204).json({ mensagem: 'Produto excluído com sucesso.' });
   } catch (error) {

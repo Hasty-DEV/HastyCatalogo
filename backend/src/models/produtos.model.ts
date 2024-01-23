@@ -37,8 +37,8 @@ Produto.init(
   {
     sequelize,
     tableName: 'produtos',
-    timestamps: true, // Adicione esta linha para incluir as colunas createdAt e updatedAt
-    underscored: true, // Use snake_case para os nomes das colunas
+    timestamps: true,  
+    underscored: true,  
   }
 );
 
