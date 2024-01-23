@@ -18,7 +18,7 @@ const sequelize = new Sequelize({
     collate: 'utf8mb4_unicode_ci',
   },
 });
-
+ 
 const closeDatabase = async () => {
   try {
     await sequelize.close();

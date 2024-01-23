@@ -8,6 +8,7 @@ import criarProduto from '../controllers/criar.produto.controller';
 import atualizarProduto from '../controllers/atualizar.produto.controller';
 import deletarProduto from '../controllers/deletar.produto.controller'; // Importe o controlador de exclusão
 import CriarProdutoExcelController from '../controllers/criar.produto.excel.controller';
+import VisualizacoesEstatisticaController from '../controllers/estatisticas/visualizacoes.estatistica.controller'; // Importe o novo controlador
 
 const router = express.Router();
 
@@ -23,5 +24,8 @@ router.post('/admin/criar-produto', criarProduto);
 router.put('/admin/atualizar-produto/:id', atualizarProduto);
 router.delete('/admin/deletar-produto/:id', deletarProduto);  
 router.post('/admin/upload-excel', CriarProdutoExcelController.criarProdutoExcel);
+
+ 
+router.post('/produtos/:produto_id/visualizacoes', VisualizacoesEstatisticaController.incrementVisualizacoes);
 
 export default router;

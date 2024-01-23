@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { Pedido } from '../models/pedidos.model';
 import logger from '../config/logger';
+//import { calcularFrete } from '../services/calculo.frete.service';
+
 class CriarPedido {
   static async criarPedido(req: Request, res: Response): Promise<void> {
     try {
@@ -23,14 +25,17 @@ class CriarPedido {
         estado,
       } = req.body;
 
-      // Criar um novo pedido no banco de dados
+      // Calcular o frete usando a API dos Correios (dados de teste, sera peciso mudar de acordo com a loja ou o produto)
+      //const freteInfo = await calcularFrete(cep, 1 , 1, 30, 8, 30);
+
+      // Criar um novo pedido combinando informações do frete e da requisição
       const novoPedido = await Pedido.create({
         nomeCompleto,
         whatsapp,
         informacaoAdicional,
         produto,
         subtotal,
-        entrega,
+        entrega: entrega,//freteInfo.valor,
         total,
         opcaoPagamento,
         cep,

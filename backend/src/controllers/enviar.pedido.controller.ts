@@ -1,6 +1,6 @@
 // controllers/dados.do.banco.controller.ts
 import { Request, Response } from 'express';
-import DadosDoBanco from '../services/dados.pedido.services';
+import DadosDoBanco from '../services/dados.pedido.service';
 import dotenv from 'dotenv';
 import logger from '../config/logger';
 class EnviarPedido {

@@ -16,6 +16,7 @@ async function deletarProduto(req: Request, res: Response): Promise<void> {
     // Deleta o produto no banco de dados local
     await produtoLocal.destroy();
 
+
     res.status(204).json({ mensagem: 'Produto excluído com sucesso.' });
   } catch (error) {
     console.error('Erro ao deletar o produto:', error);
