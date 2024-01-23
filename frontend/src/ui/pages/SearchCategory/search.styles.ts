@@ -7,6 +7,7 @@ export const Container = styled.div`
   padding: 15px 420px;
   justify-content: center;
   align-items: center;
+  
 `;
 
 export const Select = styled.select`
@@ -16,6 +17,7 @@ export const Select = styled.select`
     border-color: rgba(0, 0, 0, 0.09);
     height: 2.507em ;
     color: currentColor ;
+    margin-top: 14px;
 
 
 
