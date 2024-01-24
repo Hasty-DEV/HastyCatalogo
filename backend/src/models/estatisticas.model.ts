@@ -1,4 +1,3 @@
-// Estatisticas.ts
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/db';
 
@@ -6,16 +5,12 @@ class Estatisticas extends Model {
   public id!: number;
   public visualizacoes!: number;
   public estoque!: number;
-  public produto_id!: number; // Altere o nome da coluna para produto_id
+  public carrinho!: number;
+  public produto_id!: number;
 }
 
 Estatisticas.init(
   {
-    id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
-      primaryKey: true,
-    },
     visualizacoes: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
@@ -26,7 +21,12 @@ Estatisticas.init(
       allowNull: false,
       defaultValue: 0,
     },
-    produto_id: { // Altere o nome da coluna para produto_id
+    carrinho: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0,
+    },
+    produto_id: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
     },

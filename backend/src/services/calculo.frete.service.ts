@@ -32,4 +32,7 @@ export async function calcularFrete(
     throw error;
   }
 }
+
+export default calcucarFrete;
+
 *\

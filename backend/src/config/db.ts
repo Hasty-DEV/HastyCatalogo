@@ -17,8 +17,9 @@ const sequelize = new Sequelize({
     charset: 'utf8mb4',
     collate: 'utf8mb4_unicode_ci',
   },
+
 });
- 
+
 const closeDatabase = async () => {
   try {
     await sequelize.close();
@@ -32,10 +33,11 @@ sequelize
   .authenticate()
   .then(() => {
     logger.info('Conexão bem-sucedida com o banco de dados');
+    //sequelize.sync(); // Sincronize os modelos com o banco de dados
   })
   .catch((error: Error) => {
     logger.error('Erro ao conectar ao banco de dados:', error);
   });
 
 // Exportando a função de fechamento e o objeto sequelize
-export { sequelize, closeDatabase };
+export { sequelize, closeDatabase }
