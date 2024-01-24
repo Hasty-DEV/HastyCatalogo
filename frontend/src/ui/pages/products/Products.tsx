@@ -1,45 +1,55 @@
 // src/pages/products/Products.tsx
 import React, { useState, useEffect } from "react";
-import { Container, Row} from "react-bootstrap";
+import { Container, Row, Spinner } from "react-bootstrap";
 import ProductItem from "../../components/ProductItem/ProductItem";
+import { URL } from "../../../api/config";
 
-
-
-interface Product {
-  id: number;
+interface Produto {
+  id: string;
   title: string;
-  price: string;
-  category: string;
-  description: string;
-  image: string;
+  price: number;
+  thumbnail: string;
+  category_id: string;
 }
 
-const Products: React.FC = () => {
-  const [data, setData] = useState<Product[]>([]);
+const Produtos: React.FC = () => {
+  const [dados, setDados] = useState<Produto[]>([]);
+  const [carregando, setCarregando] = useState(true);
 
-  const ListDataProducts = async (): Promise<void> => {
+  const listarProdutos = async (): Promise<void> => {
     try {
-      const res = await fetch(`${URL}/products`);
-      const response: Product[] = await res.json();
-      setData(response);
-    } catch (error) {
-      console.error("Erro ao buscar dados do produto:", error);
+      const resposta = await fetch(`${URL}/search?q=celular`);
+      const { results }: { results: Produto[] } = await resposta.json();
+      setDados(results);
+    } catch (erro) {
+      console.error("Erro ao buscar dados do produto:", erro);
+    } finally {
+      setCarregando(false);
     }
   };
 
   useEffect(() => {
-    ListDataProducts();
+    listarProdutos();
   }, []);
 
   return (
     <Container>
-      <Row>
-        {data.map((item) => (
-          <ProductItem key={item.id} id={item.id} title={item.title} price={item.price} category={item.category} image={item.image} />
-        ))}
-      </Row>
+      {carregando ? (
+        <Row className="justify-content-center">
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Carregando...</span>
+          </Spinner>
+        </Row>
+      ) : (
+        <Row>
+          {dados.map((item) => (
+            <ProductItem key={item.id} id={item.id} title={item.title} price={item.price} thumbnail={item.thumbnail} category_id={item.category_id} />
+          ))}
+        </Row>
+      )}
     </Container>
   );
 };
 
-export default Products;
+export default Produtos;
+
