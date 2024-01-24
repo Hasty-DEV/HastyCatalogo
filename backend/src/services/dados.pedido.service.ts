@@ -15,6 +15,7 @@ class DadosDoBanco {
           whatsapp: pedido.whatsapp,
           informacaoAdicional: pedido.informacaoAdicional,
           produto: pedido.produto,
+          quantidade: pedido.quantidade,  // Inclua a quantidade
           subtotal: pedido.subtotal,  
           entrega: pedido.entrega,  
           total: pedido.total,
@@ -37,8 +38,8 @@ class DadosDoBanco {
     }
   }
 
-  static formatarDataBrasilia(data: Date): string {
-    const dataBrasilia = new Date(data.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+  static formatarDataBrasilia(createdAt: any): string {
+    const dataBrasilia = new Date(createdAt as string | number); // Ajuste aqui
     const dia = String(dataBrasilia.getDate()).padStart(2, '0');
     const mes = String(dataBrasilia.getMonth() + 1).padStart(2, '0');
     const ano = dataBrasilia.getFullYear();

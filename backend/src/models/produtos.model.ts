@@ -1,6 +1,6 @@
-// Produto.ts
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/db';
+import { Pedido } from './pedidos.model';
 
 class Produto extends Model {
   public id!: number;
@@ -8,15 +8,15 @@ class Produto extends Model {
   public price!: string;
   public category!: string;
   public image!: string;
+  public ativo!: boolean;
+
+  // Adicione o novo campo `ativo` ao modelo
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 }
 
 Produto.init(
   {
-    id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
-      primaryKey: true,
-    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,13 +33,21 @@ Produto.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    ativo: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true, // Define o padrão como true (produto ativo)
+    },
   },
   {
     sequelize,
     tableName: 'produtos',
-    timestamps: true,  
-    underscored: true,  
+    timestamps: true,
+    underscored: true,
+    modelName: 'Produto',
   }
 );
+
+Produto.hasMany(Pedido, { foreignKey: 'produto_id', as: 'pedidos' });
 
 export default Produto;

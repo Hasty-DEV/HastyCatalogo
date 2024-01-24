@@ -16,7 +16,7 @@ class EnviarPedido {
           `*Acabei de realizar o pedido abaixo:*\n\n` +
           `Nº do Pedido: ${pedido.id}\n\n` +
           `————————\n📜 *Itens:*\n\n` +
-          `*1x* ${pedido.produto}\n\n` +
+          `*${pedido.quantidade}x* ${pedido.produto}\n\n` +  // Inclua a quantidade
           `Observações do pedido: _${pedido.informacaoAdicional}_\n` +
           `————————\n\n` +
           `🛒 *Custo dos itens:* R$ ${pedido.subtotal}\n` +
@@ -27,14 +27,13 @@ class EnviarPedido {
           `🌍 *Cidade e Estado:* ${pedido.cidade} - ${pedido.estado}\n` +
           `${pedido.cep}\n\n` +
           `_Pedido feito em ${pedido.createdAt} às ${new Date().toLocaleTimeString()}h_`;
-
-          const urlMensagem = encodeURIComponent(mensagem)
+      
+        const urlMensagem = encodeURIComponent(mensagem)
           .replace(/_/g, '%5F')  // Substituir '_' por '%5F'
           .replace(/%0A%0A/g, '%0A');
-
+      
         return `https://api.whatsapp.com/send?phone=${process.env.WHATSAPP}&text=${urlMensagem}`;
       });
-
       if (mensagensPedidos.length > 0) {
         const primeiroLink = mensagensPedidos[0];
 

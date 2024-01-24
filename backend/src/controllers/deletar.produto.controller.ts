@@ -13,14 +13,13 @@ async function deletarProduto(req: Request, res: Response): Promise<void> {
       return;
     }
 
-    // Deleta o produto no banco de dados local
-    await produtoLocal.destroy();
+    // Desativa o produto no banco de dados local
+    await produtoLocal.update({ ativo: false });
 
-
-    res.status(204).json({ mensagem: 'Produto excluído com sucesso.' });
+    res.status(204).json({ mensagem: 'Produto removido do catálogo com sucesso.' });
   } catch (error) {
-    console.error('Erro ao deletar o produto:', error);
-    res.status(500).json({ mensagem: 'Erro interno ao deletar o produto.' });
+    console.error('Erro ao desativar o produto:', error);
+    res.status(500).json({ mensagem: 'Erro interno ao desativar o produto.' });
   }
 }
 

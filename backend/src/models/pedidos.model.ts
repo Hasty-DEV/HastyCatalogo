@@ -1,30 +1,8 @@
-// Importe os módulos necessários do Sequelize
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/db';
+import Produto from './produtos.model'; // Importe o modelo Produto
 
-// Defina a interface para os atributos do modelo
-interface PedidoAttributes {
-  id?: number;
-  nomeCompleto: string;
-  whatsapp: string;
-  informacaoAdicional: string;
-  produto: string;
-  subtotal: number;
-  entrega: number;
-  total: number;
-  opcaoPagamento: string;
-  cep: string;
-  endereco: string;
-  numero: string;
-  bairro: string;
-  complemento: string;
-  cidade: string;
-  estado: string;
-  createdAt?: Date;
-}
-
-// Extenda a classe Model do Sequelize e implemente a interface para criar o modelo Pedido
-class Pedido extends Model<PedidoAttributes> implements PedidoAttributes {
+class Pedido extends Model {
   public id!: number;
   public nomeCompleto!: string;
   public whatsapp!: string;
@@ -41,10 +19,17 @@ class Pedido extends Model<PedidoAttributes> implements PedidoAttributes {
   public complemento!: string;
   public cidade!: string;
   public estado!: string;
-  public createdAt!: Date;
+  public quantidade!: number; // Adicione o campo quantidade
+  public produto_id!: number;
+  createdAt?: Date;
+  // Adicione a relação de chave estrangeira com a tabela Produto
+  public produtoObj?: Produto; // Renomeie para evitar conflitos de nomes
+
+  static associate(models: any) {
+    Pedido.belongsTo(models.Produto, { foreignKey: 'produto_id', as: 'produtoObj' });
+  }
 }
 
-// Inicialize o modelo Pedido
 Pedido.init(
   {
     id: {
@@ -112,6 +97,15 @@ Pedido.init(
       type: new DataTypes.STRING(128),
       allowNull: false,
     },
+    quantidade: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      defaultValue: 1,
+    },
+    produto_id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -124,5 +118,4 @@ Pedido.init(
   }
 );
 
-// Exporte o modelo Pedido para ser utilizado em outros lugares da sua aplicação
 export { Pedido };

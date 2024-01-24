@@ -9,11 +9,13 @@ import atualizarProduto from '../controllers/atualizar.produto.controller';
 import deletarProduto from '../controllers/deletar.produto.controller'; // Importe o controlador de exclusão
 import CriarProdutoExcelController from '../controllers/criar.produto.excel.controller';
 import VisualizacoesEstatisticaController from '../controllers/estatisticas/visualizacoes.estatistica.controller'; // Importe o novo controlador
+import AdicionarCarrinhoController from '../controllers/adicionar.carrinho.controller'
 
 const router = express.Router();
 
 router.post('/register', register);
 router.post('/login', login);
+router.post('/adicionarcarrinho/:produtoId', AdicionarCarrinhoController.adicionarProduto)
 
 router.post('/pedido', async (req, res) => { 
     await CriarPedido.criarPedido(req, res);
@@ -26,6 +28,6 @@ router.delete('/admin/deletar-produto/:id', deletarProduto);
 router.post('/admin/upload-excel', CriarProdutoExcelController.criarProdutoExcel);
 
  
-router.post('/produtos/:produto_id/visualizacoes', VisualizacoesEstatisticaController.incrementVisualizacoes);
+router.get('/produtos/:produto_id/visualizacoes', VisualizacoesEstatisticaController.incrementVisualizacoes);
 
 export default router;

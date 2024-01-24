@@ -1,7 +1,9 @@
+// CriarProdutoExcelController.ts
 import { Request, Response } from 'express';
 import xlsx from 'xlsx';
 import Produto from '../models/produtos.model';
 import logger from '../config/logger';
+import Estatisticas from '../models/estatisticas.model'; // Importe o modelo Estatisticas
 
 class CriarProdutoExcelController {
   static async criarProdutoExcel(req: Request, res: Response): Promise<void> {
@@ -19,7 +21,7 @@ class CriarProdutoExcelController {
       const sheet = workbook.Sheets[sheetName];
       const excelData = xlsx.utils.sheet_to_json(sheet);
 
-      for (const row of excelData as Array<{ title: string; price: string; category: string; image: string }>) {
+      for (const row of excelData as Array<{ title: string; price: string; category: string; image: string; estoque: number }>) {
         // Validar e processar os dados da linha
         const novoProduto = {
           title: row.title,
@@ -28,7 +30,15 @@ class CriarProdutoExcelController {
           image: row.image,
         };
 
-        await Produto.create(novoProduto);
+        const produtoCriado = await Produto.create(novoProduto);
+
+        // Adicionar o produto na tabela de estatísticas com o estoque especificado
+        await Estatisticas.create({
+          produto_id: produtoCriado.id,
+          visualizacoes: 0,
+          estoque: row.estoque,
+          carrinho: 0,
+        });
       }
 
       logger.info('Produtos criados com sucesso a partir do arquivo Excel.');
