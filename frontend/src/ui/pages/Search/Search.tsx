@@ -1,16 +1,14 @@
-import { Container, Row } from "react-bootstrap";
-import { SearchInput } from "./Search.Styles";
+import { Row } from "react-bootstrap";
+import { ButtonInput, IconSearch } from "./Search.Styles";
 
 const Search: React.FC = () => {
-    return(
-
-        <Container>
-            <Row>
-            <SearchInput/>
-            </Row>
-        </Container>
-     
-    )
-}
+  return (
+    <Row>
+      <ButtonInput>
+        <IconSearch />
+      </ButtonInput>
+    </Row>
+  );
+};
 
 export default Search;
