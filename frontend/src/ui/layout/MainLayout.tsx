@@ -1,8 +1,9 @@
 import { Outlet } from "react-router-dom";
 import Header from "../partials/Header/Header";
 
-import Search from "../pages/SearchCategory/search";
+import SearchCategory from "../pages/SearchCategory/SearchCategory";
 import Products from "../pages/products/Products";
+import Search from "../pages/Search/Search";
 
 
 
@@ -11,6 +12,7 @@ const MainLayout: React.FC = () => {
     <div>
       <Header />
       <Outlet />
+      <SearchCategory/>
       <Search/>
       <Products />
       {/* // <Footer /> */}

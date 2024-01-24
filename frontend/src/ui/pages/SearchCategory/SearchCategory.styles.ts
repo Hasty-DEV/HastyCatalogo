@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const Select = styled.select`
-
+    display: flex;
     border-radius: 99px ;
     background-color: rgba(0, 0, 0, 0.01) ;
     border-color: rgba(0, 0, 0, 0.09);
