@@ -1,12 +1,12 @@
+// backend/controllers/registerController.ts
+
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/user.model';
 import logger from '../config/logger';
 
 export const register = async (req: Request, res: Response) => {
-  const { fullName, cpf, password, companyPassword, role } = req.body;
- 
-
+  const { fullName, cpf, userEmail, userPassword, companyPassword, role } = req.body;
 
   try {
     if (companyPassword !== process.env.COMPANYPASS) {
@@ -14,15 +14,17 @@ export const register = async (req: Request, res: Response) => {
       return res.status(401).json({ error: 'Senha da empresa incorreta' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(userPassword, 10);
 
     const user = await User.create({
       fullName,
       cpf,
+      email: userEmail,
       password: hashedPassword,
       companyPassword,
       role,
     });
+
     logger.info('Usuário registrado com sucesso:', { cpf });
     res.json(user);
   } catch (error) {
