@@ -4,6 +4,10 @@ import { Container, Row, Spinner } from "react-bootstrap";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import { URL } from "../../../api/config";
 
+import SearchCategory from "../SearchCategory/SearchCategory";
+import Search from "../Search/Search";
+
+
 interface Produto {
   id: string;
   title: string;
@@ -33,7 +37,15 @@ const Produtos: React.FC = () => {
   }, []);
 
   return (
+
+   
+
     <Container>
+      <div className="m-4 ">
+      <SearchCategory />
+       <Search />
+      </div>
+       
       {carregando ? (
         <Row className="justify-content-center">
           <Spinner animation="border" role="status">

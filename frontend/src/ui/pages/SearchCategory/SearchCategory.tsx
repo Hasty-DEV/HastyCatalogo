@@ -51,6 +51,8 @@ const SearchCategory: React.FC = () => {
     }
   };
 
+  
+
   const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedCategory = event.target.value;
     setSelectedCategory(selectedCategory);
@@ -72,7 +74,7 @@ const SearchCategory: React.FC = () => {
             </option>
           ))}
         </Select>
-      </Row>
+      </Row> 
       <Row>
         {products.map((item) => (
           <ProductItem key={item.id} id={item.id} title={item.title} price={item.price} thumbnail={item.thumbnail} category_id={item.category_id} />

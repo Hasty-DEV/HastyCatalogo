@@ -1,25 +1,24 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Header from '../partials/Header/Header';
-import SearchCategory from '../pages/SearchCategory/SearchCategory';
-import Products from '../pages/products/Products';
-import Search from '../pages/Search/Search';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Header from "../partials/Header/Header";
+
+import Products from "../pages/products/Products";
+
 
 const MainLayout: React.FC = () => {
   return (
-    <div >
-    <Header />
-    <Outlet />
-     <div className="d-flex  p-3">
-        <SearchCategory />
-        <Search />
-      </div>
+    <div>
+      <Header />
+      <Outlet />
+      
+        
+        
+      
 
-
-    <Products />
-    {/* // <Footer /> */}
-   </div>
-);
+      <Products />
+      {/* // <Footer /> */}
+    </div>
+  );
 };
 
 export default MainLayout;
