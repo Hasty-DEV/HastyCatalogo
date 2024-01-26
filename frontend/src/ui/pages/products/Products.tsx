@@ -1,8 +1,8 @@
 // src/pages/products/Products.tsx
 import React, { useState, useEffect } from "react";
 import { Container, Row, Spinner } from "react-bootstrap";
-import ProductItem from "../../ui/components/ProductItem/ProductItem";
-import { URL } from "../../api/config";
+import ProductItem from "../../components/ProductItem/ProductItem";
+import { URL } from "../../../api/config";
 
 import SearchCategory from "../SearchCategory/SearchCategory";
 import Search from "../Search/Search";
