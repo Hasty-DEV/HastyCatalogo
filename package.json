@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "polished": "^4.2.2"
+    "@types/jsonwebtoken": "^9.0.5"
   }
 }

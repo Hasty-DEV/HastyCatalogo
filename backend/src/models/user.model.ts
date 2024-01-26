@@ -5,6 +5,7 @@ class User extends Model {
   public id!: number;
   public fullName!: string;
   public cpf!: number;
+  public email!: string; // Adicionado o campo 'email'
   public password!: string;
   public companyPassword!: string;
   public role!: string;
@@ -24,10 +25,18 @@ User.init(
       allowNull: false,
     },
     cpf: {
-      type: DataTypes.INTEGER,  
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        isNumeric: true,  
+        isNumeric: true,
+      },
+    },
+    email: {
+      type: new DataTypes.STRING(128), // Adicionado o campo 'email'
+      allowNull: false,
+      unique: true, // Garante que cada email seja único na tabela
+      validate: {
+        isEmail: true, // Adicionado validação de formato de email
       },
     },
     password: {
