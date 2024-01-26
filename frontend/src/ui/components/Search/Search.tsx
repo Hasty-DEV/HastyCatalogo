@@ -5,11 +5,11 @@ import {
   DivButton,
   IconSearch,
   InputSearch,
-} from "./Search.Styles";
+} from "../../styles/Search/Search.Styles";
 
 import { IoMdClose } from "react-icons/io";
 import { useEffect, useState } from "react";
-import ProductItem from "../../components/ProductItem/ProductItem";
+import ProductItem from "../ProductItem/ProductItem";
 import { Container, Row } from "react-bootstrap";
  
 interface Product {

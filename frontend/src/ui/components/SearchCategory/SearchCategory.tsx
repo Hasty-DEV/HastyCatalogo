@@ -1,8 +1,8 @@
 // src/pages/SearchCategory/Search.tsx
 import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
-import { Select } from "./SearchCategory.styles";
-import ProductItem from "../../components/ProductItem/ProductItem";
+import { Select } from "../../styles/SearchCategory/SearchCategory.styles";
+import ProductItem from "../ProductItem/ProductItem";
 
 interface Product {
   id: string;

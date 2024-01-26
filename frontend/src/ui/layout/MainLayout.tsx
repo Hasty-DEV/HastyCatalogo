@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../partials/Header/Header";
 
-import Products from "../pages/products/Products";
+import Products from "../../pages/products/Products";
 
 
 const MainLayout: React.FC = () => {
