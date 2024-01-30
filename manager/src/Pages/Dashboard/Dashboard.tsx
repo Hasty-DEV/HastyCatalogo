@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Routes, Route } from "react-router-dom";
 import * as D from "../../Ui/Styles/Dashboard/Dashboard.styles";
 import Sidebar from "../../Ui/Partials/Sidebar/Sidebar"; 
