@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import './config/db';
 import logger from './config/logger';
 import uploadMiddleware from "./middlewares/upload.middleware";
+import swaggerUi from 'swagger-ui-express';
+import specs from './Swagger'; 
 
 dotenv.config();
 
@@ -31,6 +33,9 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api", router);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
 
 app.use((req: Request, res: Response) => {
   res.status(404).send("Endpoint não encontrado");
