@@ -1,11 +1,13 @@
+// controllers/criar.pedido.ts
 import { Request, Response } from 'express';
 import { Pedido } from '../models/pedidos.model';
 import Produto from '../models/produtos.model';
 import logger from '../config/logger';
 import Estatisticas from '../models/estatisticas.model';
+import { escolhaFrete } from './escolha.frete.controller';
 
 class CriarPedido {
-  static async criarPedido(req: Request, res: Response): Promise<void> {
+  static async criarPedido(req: Request, res: Response): Promise<number | void> {
     try {
       const {
         nomeCompleto,
@@ -13,10 +15,7 @@ class CriarPedido {
         informacaoAdicional,
         produtoId,  
         subtotal,
-        entrega,
-        total,
         opcaoPagamento,
-        cep,
         endereco,
         numero,
         bairro,
@@ -25,6 +24,8 @@ class CriarPedido {
         estado,
         quantidade,
       } = req.body;
+
+      const { frete, distribuidora, cep } = await escolhaFrete(req, res);
 
       // Buscar o produto no banco de dados pelo id
       const produtoEncontrado = await Produto.findByPk(produtoId);
@@ -65,8 +66,7 @@ class CriarPedido {
         informacaoAdicional,
         produto: produtoEncontrado.title,
         subtotal,
-        entrega,
-        total,
+        total: subtotal + frete,
         opcaoPagamento,
         cep,
         endereco,
@@ -77,6 +77,8 @@ class CriarPedido {
         estado,
         quantidade,
         produto_id: produtoEncontrado.id,
+        frete,
+        distribuidora
       });
 
       // Atualizar o estoque nas estatísticas
@@ -84,10 +86,13 @@ class CriarPedido {
         estoque: estatisticasProduto.estoque - quantidade,
       });
 
-      logger.info('Pedido criado com sucesso:', { nomeCompleto });
-      res.status(201).json({ mensagem: 'Pedido criado com sucesso', pedido: novoPedido });
+      console.log('Pedido criado com sucesso:', { nomeCompleto });
+
+      // Exportar o ID do pedido na resposta
+      res.status(201).json({ mensagem: 'Pedido criado com sucesso', pedidoId: novoPedido.id });
+      return novoPedido.id;
     } catch (error) {
-      logger.error('Erro ao criar pedido:', { error });
+      console.error('Erro ao criar pedido:', { error });
       res.status(500).json({ mensagem: 'Erro interno do servidor' });
     }
   }
