@@ -9,7 +9,6 @@ class Pedido extends Model {
   public informacaoAdicional!: string;
   public produto!: string;
   public subtotal!: number;
-  public entrega!: number;
   public total!: number;
   public opcaoPagamento!: string;
   public cep!: string;
@@ -19,11 +18,12 @@ class Pedido extends Model {
   public complemento!: string;
   public cidade!: string;
   public estado!: string;
-  public quantidade!: number; // Adicione o campo quantidade
+  public quantidade!: number;
+  public distribuidora!: string; // Adicione o campo "distribuidora"
+  public frete!: number; // Adicione o campo "frete"
   public produto_id!: number;
   createdAt?: Date;
-  // Adicione a relação de chave estrangeira com a tabela Produto
-  public produtoObj?: Produto; // Renomeie para evitar conflitos de nomes
+  public produtoObj?: Produto;
 
   static associate(models: any) {
     Pedido.belongsTo(models.Produto, { foreignKey: 'produto_id', as: 'produtoObj' });
@@ -54,10 +54,6 @@ Pedido.init(
       allowNull: false,
     },
     subtotal: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
-    entrega: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
@@ -101,6 +97,14 @@ Pedido.init(
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       defaultValue: 1,
+    },
+    distribuidora: {
+      type: new DataTypes.STRING(128),
+      allowNull: true, // Ajuste se distribuidora pode ser nula
+    },
+    frete: {
+      type: DataTypes.FLOAT,
+      allowNull: true, // Ajuste se frete pode ser nulo
     },
     produto_id: {
       type: DataTypes.INTEGER.UNSIGNED,
