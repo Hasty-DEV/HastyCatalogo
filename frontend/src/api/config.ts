@@ -1,1 +1,1 @@
-export const URL = "https://api.mercadolibre.com/sites/MLB/search?q=celular";
+export const API_URL = "https://api.mercadolibre.com/sites/MLB/search?q=celular";

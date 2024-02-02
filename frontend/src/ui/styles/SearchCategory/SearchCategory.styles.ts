@@ -9,6 +9,8 @@ export const Select = styled.select`
     border-color: rgba(0, 0, 0, 0.09);
     height: 2.507em ;
     color: currentColor ;
+    width: 840px;
+    
    
 
 

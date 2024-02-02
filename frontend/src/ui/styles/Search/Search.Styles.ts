@@ -11,6 +11,7 @@ export const ButtonInput = styled.button`
   border-radius: 99px;
   border: 1px solid rgba(0, 0, 0, 0.09);
   background: rgba(0, 0, 0, 0.01);
+  margin-left: 100%;
 `;
 
 export const IconSearch = styled(Search)``;
