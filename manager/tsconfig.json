@@ -21,6 +21,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "../frontend/src/ui/partials/Footer"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

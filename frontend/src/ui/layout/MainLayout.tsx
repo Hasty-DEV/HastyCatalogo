@@ -3,6 +3,10 @@ import { Outlet } from "react-router-dom";
 import Header from "../partials/Header/Header";
 
 import Products from "../../pages/products/Products";
+import Footer from "../partials/Footer/Footer";
+
+
+
 
 
 const MainLayout: React.FC = () => {
@@ -10,13 +14,9 @@ const MainLayout: React.FC = () => {
     <div>
       <Header />
       <Outlet />
-      
-        
-        
-      
-
       <Products />
-      {/* // <Footer /> */}
+      <Footer/>
+      
     </div>
   );
 };

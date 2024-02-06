@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import {  Container, Row } from "react-bootstrap";
 import ProductItem from "../../ui/components/ProductItem/ProductItem";
 import {
   ButtonCloseSarch,
   ButtonInput,
   DivButton,
   IconSearch,
-  InputSearch
+  InputSearch,
 } from "../../ui/styles/Search/Search.Styles";
 import { IoMdClose } from "react-icons/io";
 import { Select } from "../../ui/styles/SearchCategory/SearchCategory.styles";
@@ -30,7 +30,9 @@ const Produtos: React.FC = () => {
 
   // Estado para categorias
   const [categorias, setCategorias] = useState<Categoria[]>([]);
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState<string | undefined>();
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState<
+    string | undefined
+  >();
 
   // Estado para a barra de pesquisa
   const [exibirPesquisa, setExibirPesquisa] = useState(false);
@@ -54,7 +56,9 @@ const Produtos: React.FC = () => {
   // Buscar todas as categorias
   const buscarCategorias = async () => {
     try {
-      const resposta = await fetch("https://api.mercadolibre.com/sites/MLB/categories");
+      const resposta = await fetch(
+        "https://api.mercadolibre.com/sites/MLB/categories"
+      );
       const dados: Categoria[] = await resposta.json();
       setCategorias(dados);
     } catch (erro) {
@@ -74,7 +78,9 @@ const Produtos: React.FC = () => {
   }, [categoriaSelecionada]);
 
   // Lidar com a mudança na seleção de categoria
-  const lidarComMudancaCategoria = (evento: React.ChangeEvent<HTMLSelectElement>) => {
+  const lidarComMudancaCategoria = (
+    evento: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const categoriaSelecionada = evento.target.value;
     setCategoriaSelecionada(categoriaSelecionada);
     buscarProdutosPorCategoria(categoriaSelecionada);
@@ -91,7 +97,9 @@ const Produtos: React.FC = () => {
   };
 
   // Lidar com a mudança no input de pesquisa
-  const lidarComMudancaInput = (evento: React.ChangeEvent<HTMLInputElement>) => {
+  const lidarComMudancaInput = (
+    evento: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setValorInput(evento.target.value);
   };
 
@@ -112,44 +120,42 @@ const Produtos: React.FC = () => {
 
     buscarProduto();
   }, [valorInput]);
-  
-  
 
   return (
-    <Container>
-      <div className="m-4">
-        <Row>
-          <Col md={6}>
-            <Select value={categoriaSelecionada} onChange={lidarComMudancaCategoria}>
-              <option value="">Todas as categorias</option>
-              {categorias.map((categoria) => (
-                <option key={categoria.id} value={categoria.id}>
-                  {categoria.name}
-                </option>
-              ))}
-            </Select>
-          </Col>
+    <Container fluid>
+      <Container className="p-3 d-flex">
+        <Select
+          value={categoriaSelecionada}
+          onChange={lidarComMudancaCategoria}
+        >
+          <option value="">Todas as categorias</option>
+          {categorias.map((categoria) => (
+            <option key={categoria.id} value={categoria.id}>
+              {categoria.name}
+            </option>
+          ))}
+        </Select>
 
-          <Col md={6}>
-            {exibirPesquisa ? (
-              <DivButton>
-                <ButtonCloseSarch title="Fechar Pesquisa" onClick={lidarComFecharPesquisa}>
-                  <IoMdClose />
-                </ButtonCloseSarch>
-                <InputSearch
-                  placeholder="Pesquisar..."
-                  value={valorInput}
-                  onChange={lidarComMudancaInput}
-                />
-              </DivButton>
-            ) : (
-              <ButtonInput onClick={lidarComExibicaoPesquisa}>
-                <IconSearch />
-              </ButtonInput>
-            )}
-          </Col>
-        </Row>
-      </div>
+        {exibirPesquisa ? (
+          <DivButton className="position-fixed">
+            <ButtonCloseSarch
+              title="Fechar Pesquisa"
+              onClick={lidarComFecharPesquisa}
+            >
+              <IoMdClose />
+            </ButtonCloseSarch>
+            <InputSearch
+              placeholder="Pesquisar..."
+              value={valorInput}
+              onChange={lidarComMudancaInput}
+            />
+          </DivButton>
+        ) : (
+          <ButtonInput onClick={lidarComExibicaoPesquisa}>
+            <IconSearch />
+          </ButtonInput>
+        )}
+      </Container>
 
       <Row>
         {dados.map((item) => (

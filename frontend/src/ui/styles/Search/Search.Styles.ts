@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { Search } from "@styled-icons/material-rounded/Search";
 
+const mobileBreakpoint = "768px";
+
 export const ButtonInput = styled.button`
   display: flex;
   width: 41.91px;
@@ -11,7 +13,12 @@ export const ButtonInput = styled.button`
   border-radius: 99px;
   border: 1px solid rgba(0, 0, 0, 0.09);
   background: rgba(0, 0, 0, 0.01);
-  margin-left: 100%;
+  
+  
+
+  @media (max-width: ${mobileBreakpoint}) {
+    margin-left: 10px; 
+  }
 `;
 
 export const IconSearch = styled(Search)``;
@@ -34,7 +41,7 @@ export const InputSearch = styled.input`
   transform: translate(-50%, -50%);
   padding: 12px 24px;
 
-  width: 25%;
+  width: 80%; 
   height: 8%;
   border-radius: 30px;
   font-size: 25px;
@@ -43,6 +50,10 @@ export const InputSearch = styled.input`
 
   border: none;
   color: #000;
+
+  @media (max-width: ${mobileBreakpoint}) {
+    width: 90%;
+  }
 `;
 
 export const ButtonCloseSarch = styled.button`
@@ -65,6 +76,10 @@ export const ButtonCloseSarch = styled.button`
   &:active {
     transform: translateY(-10px);
   }
+
+  @media (max-width: ${mobileBreakpoint}) {
+    top: 10px;
+    right: 10px; 
+    
+  }
 `;
-
-
