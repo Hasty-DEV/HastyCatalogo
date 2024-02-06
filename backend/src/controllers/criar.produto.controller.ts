@@ -14,10 +14,14 @@ async function criarProduto(req: Request, res: Response): Promise<void> {
   }
 
   try {
+    // Se o campo category for uma string, convertemos para um array de uma única string
+    const categoryArray = typeof category === 'string' ? [category] : category;
+  
+
     const produtoLocal = await Produto.create({
       title,
       price,
-      category,
+      category: categoryArray,
       image,
     });
 

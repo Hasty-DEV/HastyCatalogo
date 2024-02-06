@@ -6,11 +6,9 @@ class Produto extends Model {
   public id!: number;
   public title!: string;
   public price!: string;
-  public category!: string;
+  public category!: string[];
   public image!: string;
   public ativo!: boolean;
-
-  // Adicione o novo campo `ativo` ao modelo
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -26,8 +24,20 @@ Produto.init(
       allowNull: false,
     },
     category: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,  // Use DataTypes.TEXT em vez de DataTypes.ARRAY(DataTypes.STRING)
       allowNull: false,
+      get() {
+        const rawValue: string = this.getDataValue('category');
+        try {
+          const parsedValue = JSON.parse(rawValue);
+          return Array.isArray(parsedValue) ? parsedValue : [];
+        } catch (error) {
+          return [];
+        }
+      },
+      set(value: string[]) {
+        this.setDataValue('category', JSON.stringify(value));
+      },
     },
     image: {
       type: DataTypes.STRING,
@@ -36,7 +46,7 @@ Produto.init(
     ativo: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: true, // Define o padrão como true (produto ativo)
+      defaultValue: true,
     },
   },
   {

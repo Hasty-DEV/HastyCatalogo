@@ -21,12 +21,12 @@ class CriarProdutoExcelController {
       const sheet = workbook.Sheets[sheetName];
       const excelData = xlsx.utils.sheet_to_json(sheet);
 
-      for (const row of excelData as Array<{ title: string; price: string; category: string; image: string; estoque: number }>) {
+      for (const row of excelData as Array<{ title: string; price: string; category: string | string[]; image: string; estoque: number }>) {
         // Validar e processar os dados da linha
         const novoProduto = {
           title: row.title,
           price: row.price,
-          category: row.category,
+          category: typeof row.category === 'string' ? row.category.split(',').map(cat => cat.trim()) : row.category,
           image: row.image,
         };
 

@@ -42,7 +42,7 @@ export const login = async (req: Request, res: Response) => {
       res.status(401).json({ error: 'Credenciais inválidas' });
     }
   } catch (error) {
-    logger.error('Erro ao realizar login', { error });
-    res.status(500).json({ error: 'Erro ao realizar login. Tente novamente mais tarde.' });
+    logger.error('Erro ao realizar login' + error );
+    res.status(500).json({ error: 'Erro ao realizar login. Tente novamente mais tarde.' + error });
   }
 };

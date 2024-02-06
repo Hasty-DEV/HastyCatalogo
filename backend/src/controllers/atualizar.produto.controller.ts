@@ -46,10 +46,13 @@ async function atualizarProduto(req: Request, res: Response): Promise<void> {
       }
     }
 
+    // Processar o campo category
+    const updatedCategory = typeof category === 'string' ? category.split(',').map(cat => cat.trim()) : category;
+
     await produtoLocal.update({
       title: title || produtoLocal.title,
       price: price || produtoLocal.price,
-      category: category || produtoLocal.category,
+      category: updatedCategory || produtoLocal.category,
       image: image || produtoLocal.image,
     });
 
