@@ -6,13 +6,14 @@ const mobileBreakpoint = "768px";
 export const ButtonInput = styled.button`
   display: flex;
   width: 41.91px;
-  height: 40px;
+  height: 41.91px;
   padding: 11.3px 12.72px 12.7px 12.71px;
   justify-content: center;
   align-items: center;
   border-radius: 99px;
   border: 1px solid rgba(0, 0, 0, 0.09);
   background: rgba(0, 0, 0, 0.01);
+  background: #fff;
   
   
 
@@ -41,7 +42,7 @@ export const InputSearch = styled.input`
   transform: translate(-50%, -50%);
   padding: 12px 24px;
 
-  width: 80%; 
+  width: 30%; 
   height: 8%;
   border-radius: 30px;
   font-size: 25px;

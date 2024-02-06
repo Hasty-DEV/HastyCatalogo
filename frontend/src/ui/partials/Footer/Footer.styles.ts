@@ -33,10 +33,10 @@ color:#222;
 
 `;
 
-export const Button = styled.button`
+export const ButtonNewsletter = styled.button`
   width: 50px;
   height: 50px;
-  background: ${props => props.theme.colors.secondary};
+  background: #EDEDED;
   border-radius: 0 10px 10px 0;
   border: none; 
   
