@@ -28,7 +28,7 @@ const Header: React.FC = () => {
         socialMediaLinks={socialMediaLinks}
       />
       <LogoHeader />
-      <ShoppingCarButton/>
+      <ShoppingCarButton id={""} title={""} price={0} thumbnail={""} category_id={""} amount={0}/>
     </HeaderContainer>
   );
 };

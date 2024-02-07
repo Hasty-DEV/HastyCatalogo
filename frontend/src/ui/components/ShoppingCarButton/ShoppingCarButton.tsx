@@ -1,8 +1,18 @@
 import { useState } from "react";
+import { Col } from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 
-const ShoppingCarButton: React.FC = () => {
+
+interface Produto {
+  id: string;
+  title: string;
+  price: number;
+  thumbnail: string;
+  category_id: string;
+  amount: number;
+}
+const ShoppingCarButton: React.FC<Produto>= ({ id,thumbnail, title, price,amount }) => {
   const [showCar, setShowCar] = useState(false);
 
   const handleOnClick = () => {
@@ -34,8 +44,29 @@ const ShoppingCarButton: React.FC = () => {
               </div>
               <div></div>
               <div></div>
+              
             </ButtonAndTitleContainer>
             <hr />
+
+            <Col key={id}>
+            <div>
+              <div>
+              <ButtonShoppingCar
+                title="Fechar Carrinho"
+                //criar outra função
+                onClick={(e) => handleCloseButtonClick(e)}
+              >
+                <IoMdClose />
+              </ButtonShoppingCar>
+              </div>
+              <img src={thumbnail} alt={title}  />
+              <h1>{title}</h1>
+              <h1>{amount}</h1>
+              <h1>{price}</h1>
+
+            </div>
+            </Col>
+            
 
           </ShoppingCarContainer>
         </ShoppingCar>
