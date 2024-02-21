@@ -1,9 +1,7 @@
 import Logo from "../../assets/Logo.svg"
 const LogoHeader: React.FC = () => {
   return (
-    <div className="d-flex justify-content-center">
       <StyledLogo src={Logo} alt=""/>
-    </div>
   );
 }
 

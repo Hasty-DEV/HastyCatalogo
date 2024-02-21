@@ -127,8 +127,6 @@ export default ToggleButtonHeader;
 import styled from "styled-components";
 
 const ToggleMenuWrapper = styled.div<{ showMenu: boolean }>`
-  position: relative;
-  width: 10%;
   ::before {
     content: "";
     position: fixed;
