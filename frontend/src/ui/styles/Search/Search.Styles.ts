@@ -14,11 +14,9 @@ export const ButtonInput = styled.button`
   border: 1px solid rgba(0, 0, 0, 0.09);
   background: rgba(0, 0, 0, 0.01);
   background: #fff;
-  
-  
 
   @media (max-width: ${mobileBreakpoint}) {
-    margin-left: 10px; 
+    margin-left: 10px;
   }
 `;
 
@@ -42,7 +40,7 @@ export const InputSearch = styled.input`
   transform: translate(-50%, -50%);
   padding: 12px 24px;
 
-  width: 30%; 
+  width: 30%;
   height: 8%;
   border-radius: 30px;
   font-size: 25px;
@@ -80,7 +78,6 @@ export const ButtonCloseSarch = styled.button`
 
   @media (max-width: ${mobileBreakpoint}) {
     top: 10px;
-    right: 10px; 
-    
+    right: 10px;
   }
 `;

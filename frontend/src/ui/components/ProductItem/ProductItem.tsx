@@ -1,6 +1,13 @@
 import React from "react";
-import { Col } from "react-bootstrap";
-import { DivProducts, ImgPrduct, CategoriaProduct, TextTitle, ButtunProducts } from "./index.styles";
+
+import {
+  ProductItemContainer,
+  DivProducts,
+  ImgPrduct,
+  CategoriaProduct,
+  TextTitle,
+  ButtunProducts,
+} from "./index.styles";
 
 interface ProductItemProps {
   id: string;
@@ -10,22 +17,26 @@ interface ProductItemProps {
   thumbnail: string;
 }
 
-const ProductItem: React.FC<ProductItemProps> = ({ id, title, price, category_id, thumbnail }) => (
-  <Col key={id} xs={12} sm={6} md={3}>
-  <div className="d-flex align-items-center justify-content-center">
-    <DivProducts>
-     
-      <ImgPrduct src={thumbnail} alt={title} className="mx-auto d-block" />
-      <div className="d-flex p-4">
-        <CategoriaProduct>{category_id}</CategoriaProduct>
-        <p>R$ {price}</p>
-      </div>
-      
-      <TextTitle>{title}</TextTitle>
-      <ButtunProducts>Comprar</ButtunProducts>
-    </DivProducts>
-  </div>
-</Col>
+const ProductItem: React.FC<ProductItemProps> = ({
+  id,
+  title,
+  price,
+  category_id,
+  thumbnail,
+}) => (
+  <ProductItemContainer key={id} xs={12} sm={6} md={3}>
+    <div className="d-flex align-items-center justify-content-center h-100 w-100">
+      <DivProducts>
+        <ImgPrduct src={thumbnail} alt={title} className="mx-auto d-block" />
+        <div className="d-flex p-4 d-flex align-items-center justify-content-center">
+          <CategoriaProduct>{category_id}</CategoriaProduct>
+          <p className="price">R$ {price}</p>
+        </div>
+        <TextTitle>{title}</TextTitle>
+        <ButtunProducts>Comprar</ButtunProducts>
+      </DivProducts>
+    </div>
+  </ProductItemContainer>
 );
 
 export default ProductItem;

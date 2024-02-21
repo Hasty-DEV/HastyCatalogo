@@ -1,38 +1,47 @@
 import styled from "styled-components";
+import { Col } from "react-bootstrap";
+
+export const ProductItemContainer = styled(Col)`
+  display: flex;
+  align-items: stretch;
+`;
 
 export const ImgPrduct = styled.img`
-  width: 70%;
-  height: 70%;
+  width: 100px;
+  height: 100px;
   flex-shrink: 0;
   margin: 10%;
-  transition: transform 0.3s ease; 
-  
+  transition: transform 0.3s ease;
+
   &:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
   }
 `;
 export const DivProducts = styled.div`
-  width: 100%;
-  height: 100%;
+  height: 90%;
   margin-top: 20%;
   background: #fff;
   border-radius: 10px;
-  cursor: pointer; 
-  transition: box-shadow 0.3s ease, transform 0.3s ease; 
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   &:hover {
-    
-    transform: scale(1.1); 
+    transform: scale(1.1);
   }
 
   &:active {
-    transform: scale(0.98); 
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); 
+    transform: scale(0.98);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .price {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
 `;
 export const TextTitle = styled.p`
   color: #555;
-  font-family: Lato;
   font-size: 14.4px;
   font-style: normal;
   font-weight: 400;
@@ -50,8 +59,7 @@ export const CategoriaProduct = styled.h1`
   flex-direction: column;
   justify-content: center;
   flex-shrink: 0;
-  font-family: Lato;
-  font-size: 10.8px;
+  font-size: 11px;
   font-style: normal;
   font-weight: 400;
   line-height: 12.96px;
@@ -72,12 +80,12 @@ export const ButtunProducts = styled.button`
   flex-shrink: 0;
   border-radius: 90px;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  background: #F60303;
+  background: #f60303;
   margin: 30px 0 30px 15px;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 
   &:hover {
     opacity: 0.8;
-    transform: scale(1.1); 
+    transform: scale(1.1);
   }
 `;

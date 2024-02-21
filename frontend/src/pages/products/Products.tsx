@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {  Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import ProductItem from "../../ui/components/ProductItem/ProductItem";
 import {
   ButtonCloseSarch,
@@ -25,20 +25,14 @@ interface Categoria {
 }
 
 const Produtos: React.FC = () => {
-  // Estado para os produtos
   const [dados, setDados] = useState<Produto[]>([]);
-
-  // Estado para categorias
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState<
     string | undefined
   >();
-
-  // Estado para a barra de pesquisa
   const [exibirPesquisa, setExibirPesquisa] = useState(false);
   const [valorInput, setValorInput] = useState<string>("");
 
-  // Buscar produtos por categoria
   const buscarProdutosPorCategoria = async (categoria: string | undefined) => {
     try {
       const url = categoria
@@ -53,7 +47,6 @@ const Produtos: React.FC = () => {
     }
   };
 
-  // Buscar todas as categorias
   const buscarCategorias = async () => {
     try {
       const resposta = await fetch(
@@ -65,19 +58,15 @@ const Produtos: React.FC = () => {
       console.error("Erro ao buscar dados da API:", erro);
     }
   };
-
-  // Atualizar produtos quando a categoria selecionada muda
   useEffect(() => {
     buscarProdutosPorCategoria(categoriaSelecionada);
   }, [categoriaSelecionada]);
 
-  // Inicializar categorias e produtos
   useEffect(() => {
     buscarCategorias();
     buscarProdutosPorCategoria(categoriaSelecionada);
   }, [categoriaSelecionada]);
 
-  // Lidar com a mudança na seleção de categoria
   const lidarComMudancaCategoria = (
     evento: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -86,7 +75,6 @@ const Produtos: React.FC = () => {
     buscarProdutosPorCategoria(categoriaSelecionada);
   };
 
-  // Lidar com a exibição e fechamento da barra de pesquisa
   const lidarComExibicaoPesquisa = () => {
     setExibirPesquisa(!exibirPesquisa);
   };
@@ -96,14 +84,12 @@ const Produtos: React.FC = () => {
     setExibirPesquisa(false);
   };
 
-  // Lidar com a mudança no input de pesquisa
   const lidarComMudancaInput = (
     evento: React.ChangeEvent<HTMLInputElement>
   ) => {
     setValorInput(evento.target.value);
   };
 
-  // Buscar produtos por termo de pesquisa
   useEffect(() => {
     const buscarProduto = async () => {
       try {
