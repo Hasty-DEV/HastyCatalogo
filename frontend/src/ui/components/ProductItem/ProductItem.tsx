@@ -24,7 +24,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
   category_id,
   thumbnail,
 }) => (
-  <ProductItemContainer key={id} xs={12} sm={6} md={3}>
+  <ProductItemContainer key={id} xs={12} sm={6} md={3} xl={2}>
     <div className="d-flex align-items-center justify-content-center h-100 w-100">
       <DivProducts>
         <ImgPrduct src={thumbnail} alt={title} className="mx-auto d-block" />

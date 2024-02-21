@@ -19,6 +19,7 @@ export const ImgPrduct = styled.img`
 `;
 export const DivProducts = styled.div`
   height: 90%;
+  width: 90%;
   margin-top: 20%;
   background: #fff;
   border-radius: 10px;
