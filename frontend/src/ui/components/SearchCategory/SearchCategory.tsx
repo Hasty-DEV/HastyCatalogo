@@ -1,26 +1,14 @@
-// src/pages/SearchCategory/Search.tsx
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
-import { Select } from "../../styles/SearchCategory/SearchCategory.styles";
+import { Select } from "../../styles/SearchCategory/SearchCategory.style";
 import ProductItem from "../ProductItem/ProductItem";
+import { ProductType } from "../../../data/@types/Product/Product.type";
+import { Category } from "../../../data/@types/Category/Category.type";
 
-interface Product {
-  id: string;
-  title: string;
-  price: number;
-  thumbnail: string;
-  category_id: string;
-}
-
-interface Category {
-  id: string;
-  name: string;
-}
-
-const SearchCategory: React.FC = () => {
+const SearchCategory = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,14 +32,12 @@ const SearchCategory: React.FC = () => {
       }
 
       const response = await fetch(url);
-      const data: { results: Product[] } = await response.json();
+      const data: { results: ProductType[] } = await response.json();
       setProducts(data.results);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
     }
   };
-
-  
 
   const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedCategory = event.target.value;

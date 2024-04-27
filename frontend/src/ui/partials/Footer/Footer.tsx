@@ -1,13 +1,11 @@
 import { Container, Row, Col } from "react-bootstrap";
 import {
   FooterStyled,
-} from "./Footer.styles";
-import LogoDark from "../../assets/LogoDark.svg";
+} from "../../styles/Footer/Footer.styles";
+import LogoLight from "../../assets/LogoLight.svg";
 import SocialLinks from "../../assets/SocialLinks.svg";
 
-
-
-const Footer: React.FC = () => {
+const Footer = () => {
   return (
     <FooterStyled>
       <Container fluid>
@@ -36,7 +34,7 @@ const Footer: React.FC = () => {
             <p>
               Um Produto da
               <img
-                src={LogoDark}
+                src={LogoLight}
                 alt="Logo HastyDEV modo Light"
                 width={73}
                 height={19}
@@ -48,7 +46,7 @@ const Footer: React.FC = () => {
             sm={4}
             className="d-flex align-items-center justify-content-center"
           >
-            <p>© 2023 HastyDEV. All rights reserved</p>
+            <p>© 2024 HastyDEV. All rights reserved</p>
           </Col>
         </Row>
       </Container>

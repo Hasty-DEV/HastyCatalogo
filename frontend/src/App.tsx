@@ -1,6 +1,6 @@
 import { BrowserRouter,  Route,  Routes } from "react-router-dom";
-import GlobalStyles from "./ui/styles/GlobalStyles";
-import MainLayout from "./ui/layout/MainLayout";
+import GlobalStyles from "./ui/styles/global";
+import MainLayout from "./ui/components/layout/MainLayout";
 
 const App: React.FC = () => {
   return (

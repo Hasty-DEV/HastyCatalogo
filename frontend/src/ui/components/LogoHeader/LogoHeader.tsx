@@ -1,18 +1,10 @@
 import Logo from "../../assets/Logo.svg"
-const LogoHeader: React.FC = () => {
+import { StyledLogo } from "../../styles/LogoHeader/LogoHeader.style";
+
+const LogoHeader = () => {
   return (
-      <StyledLogo src={Logo} alt=""/>
+      <StyledLogo src={Logo} alt="" className="w-100 img-fluid"/>
   );
 }
 
 export default LogoHeader;
-
-import styled from "styled-components";
-
-export const StyledLogo = styled.img`
-  max-width: 10vh;
-  width: 100%; 
-  height: auto;
-
-
-`;

@@ -1,7 +1,7 @@
 import LogoHeader from "../../components/LogoHeader/LogoHeader";
 import ShoppingCarButton from "../../components/ShoppingCarButton/ShoppingCarButton";
 import ToggleButtonHeader from "../../components/ToggleButtonHeader/ToggleButtonHeader";
-import { HeaderContainer } from "./Header.styles";
+import { HeaderContainer } from "../../styles/Header/Header.styles";
 
 const socialMediaLinks = [
   {
@@ -13,7 +13,7 @@ const socialMediaLinks = [
   },
 ];
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
     <HeaderContainer className="d-flex justify-content-between align-items-center">
       <ToggleButtonHeader

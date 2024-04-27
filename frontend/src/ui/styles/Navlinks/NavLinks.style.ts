@@ -2,12 +2,7 @@ import { Nav } from "react-bootstrap";
 import styled from "styled-components";
 
 export const StyledNavLink = styled(Nav.Link)`
-  text-decoration: none;
   transition: 0.5s all;
-
-  &:hover {
-    
-  }
 `;
 
 export const StyledNavLinksContainer = styled.div`

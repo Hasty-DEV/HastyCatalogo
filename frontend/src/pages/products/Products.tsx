@@ -7,9 +7,9 @@ import {
   DivButton,
   IconSearch,
   InputSearch,
-} from "../../ui/styles/Search/Search.Styles";
+} from "../../ui/styles/Search/Search.style";
 import { IoMdClose } from "react-icons/io";
-import { Select } from "../../ui/styles/SearchCategory/SearchCategory.styles";
+import { Select } from "../../ui/styles/SearchCategory/SearchCategory.style";
 
 interface Produto {
   id: string;
