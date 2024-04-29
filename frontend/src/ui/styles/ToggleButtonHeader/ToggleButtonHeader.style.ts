@@ -33,6 +33,7 @@ export const Menu = styled.div<{ showMenu: boolean }>`
   height: 100vh;
   padding: 20px;
   width: 35vw;
+  background: #fff;
   opacity: ${(props) => (props.showMenu ? 1 : 0)};
   visibility: ${(props) => (props.showMenu ? "visible" : "hidden")};
   transition: opacity 0.6s ease, visibility 0.6s ease;
