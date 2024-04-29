@@ -42,6 +42,7 @@ const Produtos: React.FC = () => {
       const resposta = await fetch(url);
       const dados: { results: Produto[] } = await resposta.json();
       setDados(dados.results);
+      console.log(dados.results)
     } catch (erro) {
       console.error("Erro ao buscar produtos:", erro);
     }
